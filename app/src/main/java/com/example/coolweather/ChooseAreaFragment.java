@@ -1,6 +1,7 @@
 package com.example.coolweather;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +25,6 @@ import com.example.coolweather.util.Utility;
 
 import org.jetbrains.annotations.NotNull;
 import org.litepal.LitePal;
-import org.litepal.crud.LitePalSupport;
-import org.litepal.exceptions.DataSupportException;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -96,6 +94,12 @@ public class ChooseAreaFragment extends Fragment {
                 }else if(currentSelectedLevel == LEVEL_CITY){
                     selectedCity = cityList.get(position);
                     queryCounties();
+                }else if(currentSelectedLevel == LEVEL_COUNTY){
+                    String weatherId = countyList.get(position).getWeatherId();
+                    Intent intent = new Intent(getActivity(), WeatherActivity.class);
+                    intent.putExtra("weather_id",weatherId);
+                    startActivity(intent);
+                    getActivity().finish();
                 }
             }
         });
