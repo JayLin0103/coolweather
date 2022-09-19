@@ -9,6 +9,7 @@ import android.os.IBinder;
 import android.os.SystemClock;
 import android.preference.PreferenceManager;
 import android.provider.AlarmClock;
+import android.util.Log;
 
 import com.example.coolweather.gson.Weather;
 import com.example.coolweather.util.HttpUtil;
@@ -23,10 +24,17 @@ import okhttp3.Callback;
 import okhttp3.Response;
 
 public class AutoUpdateService extends Service {
+    private static final String TAG = "AutoUpdateService";
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
         return null;
+    }
+
+    @Override
+    public void onCreate() {
+        super.onCreate();
+        Log.d(TAG, "onCreate");
     }
 
     @Override
